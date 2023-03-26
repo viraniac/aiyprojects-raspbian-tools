@@ -97,19 +97,21 @@ typing-extensions==3.7.4.3
 typing-inspect==0.6.0
 EOF
 
+# Update existing packages
+time apt-get ${APT_NONINTERACTIVE} update --allow-releaseinfo-change && \
+     apt-get ${APT_NONINTERACTIVE} upgrade
+
 # Install debian packages
 if ! ls /tmp/libttspico-utils_*.deb; then
-  (cd /tmp && wget http://archive.raspberrypi.org/debian/pool/main/s/svox/libttspico-utils_1.0+git20130326-3+rpi1_armhf.deb)
+  (cd /tmp && wget http://http.us.debian.org/debian/pool/non-free/s/svox/libttspico-utils_1.0+git20130326-11_armhf.deb)
 fi
 
 if ! ls /tmp/libttspico0_*.deb; then
-  (cd /tmp && wget http://archive.raspberrypi.org/debian/pool/main/s/svox/libttspico0_1.0+git20130326-3+rpi1_armhf.deb)
+  (cd /tmp && wget http://http.us.debian.org/debian/pool/non-free/s/svox/libttspico0_1.0+git20130326-11_armhf.deb)
 fi
 
-time apt-get ${APT_NONINTERACTIVE} install --fix-broken --no-upgrade raspberrypi-kernel-headers
-
-time apt-get ${APT_NONINTERACTIVE} update --allow-releaseinfo-change && \
-     apt-get ${APT_NONINTERACTIVE} install --fix-broken --no-upgrade \
+# Install debian packages
+time apt-get ${APT_NONINTERACTIVE} install --fix-broken \
   alsa-utils \
   avahi-utils \
   dkms \
@@ -119,6 +121,7 @@ time apt-get ${APT_NONINTERACTIVE} update --allow-releaseinfo-change && \
   python3-aiohttp \
   python3-bluez \
   python3-dbus \
+  python3-protobuf \
   /tmp/libttspico-utils_*.deb \
   /tmp/libttspico0_*.deb
 
@@ -164,6 +167,9 @@ echo "${BUILD_INFO}" > /etc/aiyprojects.info
 # Enable SSH.
 touch /boot/ssh
 
+# Enable legacy camera
+raspi-config nonint do_legacy 0
+
 # Update boot configuration (/boot/config.txt).
 sed -i -e "s/^dtparam=audio=on/#\0/" /boot/config.txt
 sed -i -e "s/^dtparam=spi=on/#\0/" /boot/config.txt
@@ -202,7 +208,7 @@ git clone "${PYTHON_DIR}" "${LOCAL_PYTHON_DIR}"
 pushd "${LOCAL_PYTHON_DIR}"
 git remote remove origin
 git checkout -B aiyprojects
-git remote add origin https://github.com/google/aiyprojects-raspbian
+git remote add origin https://github.com/viraniac/aiyprojects-raspbian
 git config branch.aiyprojects.remote origin
 git config branch.aiyprojects.merge refs/heads/aiyprojects
 popd

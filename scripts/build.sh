@@ -22,7 +22,7 @@ fi
 
 readonly OUT_DIR="$1"
 
-readonly RASPBIAN_IMAGE_URL=${RASPBIAN_IMAGE_URL:-https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-03-25/2021-03-04-raspios-buster-armhf.zip}
+readonly RASPBIAN_IMAGE_URL=${RASPBIAN_IMAGE_URL:-https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2023-02-22/2023-02-21-raspios-bullseye-armhf.img.xz}
 readonly RASPBIAN_IMAGE=${RASPBIAN_IMAGE_URL##*/}
 readonly BUILD_ENGINE="${BUILD_ENGINE:-docker}"
 
@@ -59,7 +59,7 @@ if ls "${OUT_DIR}/aiyprojects-"*.img; then
   readonly IMAGE=$(ls "${OUT_DIR}/aiyprojects-"*.img)
 else
   readonly IMAGE="${OUT_DIR}/aiyprojects-$(date +%Y-%m-%d).img"
-  time unzip -p "${OUT_DIR}/${RASPBIAN_IMAGE}" > "${IMAGE}"
+  time xzcat "${OUT_DIR}/${RASPBIAN_IMAGE}" > "${IMAGE}"
 fi
 
 # Build image.
