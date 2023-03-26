@@ -4,12 +4,8 @@ set -e
 
 case "$1" in
     configure)
-        # Protobuf
-        PLATFORM=$(python3 -c "import distutils.util; print(distutils.util.get_platform().replace('.', '_').replace('-', '_'))")
-        pip3 install --no-deps --no-cache-dir --disable-pip-version-check \
-            "/opt/aiy/python-wheels/protobuf-3.14.0-cp37-cp37m-${PLATFORM}.whl"
-
         # Google Assistant
+        PLATFORM=$(python3 -c "import distutils.util; print(distutils.util.get_platform().replace('.', '_').replace('-', '_'))")
         SITE_PACKAGES=$(python3 -c "import site; print(site.getsitepackages()[0])")
 
         # armv6l

@@ -1,3 +1,9 @@
+aiy-python-wheels (1.4-2) stable; urgency=medium
+
+  * Use python3-protobuf package instead of embedded wheel
+
+ -- Gunjan Gupta <viraniac@gmail.com>  Sun, 26 Nov 2023 18:36:00 +0530
+
 aiy-python-wheels (1.4-1) stable; urgency=medium
 
   * Update protobuf and google-assistant-library packages.
