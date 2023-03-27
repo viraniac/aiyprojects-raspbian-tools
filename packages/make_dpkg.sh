@@ -57,6 +57,11 @@ done
 
 cp "${SCRIPT_DIR}/aiy-vision-firmware_1.2-0_all.deb" \
    "${SCRIPT_DIR}/aiy-models_1.1-0_all.deb" \
+   "${SCRIPT_DIR}/linux-libc-dev_1.20230327-1_armhf.deb" \
+   "${SCRIPT_DIR}/raspberrypi-bootloader_1.20230327-1_armhf.deb" \
+   "${SCRIPT_DIR}/raspberrypi-kernel-headers_1.20230327-1_armhf.deb" \
+   "${SCRIPT_DIR}/raspberrypi-kernel_1.20230327-1_armhf.deb" \
+   "${SCRIPT_DIR}/vcdbg_1.20230327-1_armhf.deb" \
    "${DEB_DIR}"
 
 wait

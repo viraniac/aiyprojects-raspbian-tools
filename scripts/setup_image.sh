@@ -130,6 +130,14 @@ time apt-get ${APT_NONINTERACTIVE} remove \
 
 time apt-get ${APT_NONINTERACTIVE} autoremove
 
+# Install upgraded raspberrypi firmware packages
+time apt-get ${APT_NONINTERACTIVE} install --fix-broken \
+    ${DEB_DIR}/linux-libc-dev_1.20230327-1_armhf.deb \
+    ${DEB_DIR}/raspberrypi-bootloader_1.20230327-1_armhf.deb \
+    ${DEB_DIR}/raspberrypi-kernel-headers_1.20230327-1_armhf.deb \
+    ${DEB_DIR}/raspberrypi-kernel_1.20230327-1_armhf.deb \
+    ${DEB_DIR}/vcdbg_1.20230327-1_armhf.deb
+
 # Install general packages.
 install_package $(ls ${DEB_DIR}/aiy-python-wheels_*.deb)
 install_package $(ls ${DEB_DIR}/aiy-board-info_*_all.deb)
