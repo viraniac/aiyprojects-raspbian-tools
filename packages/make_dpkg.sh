@@ -27,7 +27,6 @@ readonly PACKAGES=( \
     "${SCRIPT_DIR}/aiy-bt-prov-server" \
     "${SCRIPT_DIR}/aiy-cwc-server" \
     "${SCRIPT_DIR}/aiy-io-mcu-firmware" \
-    "${SCRIPT_DIR}/aiy-python-wheels" \
     "${SCRIPT_DIR}/aiy-usb-gadget" \
     "${SCRIPT_DIR}/aiy-voice-services" \
     "${SCRIPT_DIR}/aiy-projects-python/drivers/aiy" \

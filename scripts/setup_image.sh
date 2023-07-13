@@ -59,28 +59,16 @@ function install_package {
 
 # Install python packages:
 #   inotify                  (needed by aiy-io-mcu-firmware)
-#   google-assistant-grpc    (needed by aiy-projects-python)
-#   google-assistant-library (needed by aiy-projects-python)
-#   google-cloud-speech      (needed by aiy-projects-python)
-#   google-auth-oauthlib     (needed by aiy-projects-python)
 #
 # List needed packages excluding:
-#   google-assistant-library (installed from aiy-python-wheels)
-#   protobuf                 (installed from aiy-python-wheels)
+#   protobuf                 (installed from python3-protobuf)
 #   argparse                 (part of python3 standard library)
 #
-# pip3 list --user --format=freeze | grep -v google-assistant-library | grep -v protobuf | grep -v argparse
 time pip3 install --retries 10 --default-timeout=60 \
                   --no-deps --no-cache-dir --disable-pip-version-check \
                   -r /dev/stdin <<EOF
 cachetools==4.1.1
 enum34==1.1.10
-google-api-core==1.23.0
-google-assistant-grpc==0.3.0
-google-auth==1.23.0
-google-auth-oauthlib==0.4.2
-google-cloud-speech==2.0.0
-googleapis-common-protos==1.52.0
 grpcio==1.33.2
 inotify==0.2.10
 libcst==0.3.13
@@ -131,7 +119,6 @@ time apt-get ${APT_NONINTERACTIVE} remove \
 time apt-get ${APT_NONINTERACTIVE} autoremove
 
 # Install general packages.
-install_package $(ls ${DEB_DIR}/aiy-python-wheels_*.deb)
 install_package $(ls ${DEB_DIR}/aiy-board-info_*_all.deb)
 install_package $(ls ${DEB_DIR}/aiy-usb-gadget_*_all.deb)
 install_package $(ls ${DEB_DIR}/aiy-io-mcu-firmware_*_all.deb)
